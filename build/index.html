@@ -16,6 +16,17 @@
     </ul>
   </main>
 
+  <script type="text/template" id="task-template">
+    <li class="task">
+      <h2>
+        <%- task.title %>
+      </h2>
+      <p>
+        <%- task.description %>
+      </p>
+    </li>
+  </script>
+
   <script src="/app.bundle.js" charset="utf-8"></script>
 </body>
 </html>
