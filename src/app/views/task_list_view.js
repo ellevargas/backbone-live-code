@@ -1,3 +1,9 @@
+import $ from 'jquery';
+import Backbone from 'backbone';
+import _ from 'underscore';
+
+import TaskView from 'app/views/task_view';
+
 var TaskListView = Backbone.View.extend({
   initialize: function(options) {
     // Store a the full list of tasks
@@ -37,3 +43,5 @@ var TaskListView = Backbone.View.extend({
     return this; // enable chained calls
   }
 });
+
+export default TaskListView;

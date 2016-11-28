@@ -12,3 +12,5 @@ var TaskView = Backbone.View.extend({
     return this;
   }
 });
+
+export default TaskView;
