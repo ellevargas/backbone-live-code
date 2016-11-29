@@ -3,11 +3,14 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 
 import TaskView from 'app/views/task_view';
+import Task from 'app/models/task';
 
 var TaskListView = Backbone.View.extend({
   initialize: function(options) {
     // Store a the full list of tasks
-    this.taskData = options.taskData;
+    // this.taskData = options.taskData;
+
+    this.modelList = [];
 
     // Compile a template to be shared between the individual tasks
     this.taskTemplate = _.template($('#task-template').html());
@@ -17,6 +20,7 @@ var TaskListView = Backbone.View.extend({
 
     // Create a TaskView for each task
     this.cardList = [];
+
     this.taskData.forEach(function(task) {
       var card = new TaskView({
         task: task,
@@ -50,7 +54,9 @@ var TaskListView = Backbone.View.extend({
 
   events: {
     'submit .new-task': 'createTask',
+    // works on type = "submit" and tries to throw down the whole form
     'click .clear-button': 'clearInput'
+    // works on type = "button" without trying to submit the whole form
   },
 
   createTask: function(event) {
@@ -89,7 +95,19 @@ var TaskListView = Backbone.View.extend({
       description: this.input.description.val()
     };
     return task;
+  },
+
+  addTask: function(rawTask) {
+    var task = new Task(rawTask);
+    this.modelList.push(task);
+
+    var card = new TaskView({
+      model: task,
+      template: this.taskTemplate
+    })
+
   }
+
 });
 
 export default TaskListView;

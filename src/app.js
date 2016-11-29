@@ -16,7 +16,6 @@ var taskData = [
   }
 ];
 
-
 $(document).ready(function() {
   var application = new TaskListView({
     el: $('#application'),
