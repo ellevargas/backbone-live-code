@@ -16,6 +16,9 @@ var TaskView = Backbone.View.extend({
   },
 
   render: function() {
+    this.delegateEvents();
+    // ^ reconnects the DOM event handlers
+
     var html = this.template({task: this.model.attributes}) // alt use .toJSON() - attributes will bypass validations and give you direct access so be careful
     this.$el.html(html);
 

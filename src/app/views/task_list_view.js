@@ -10,7 +10,7 @@ var TaskListView = Backbone.View.extend({
     // Store a the full list of tasks
     // this.taskData = options.taskData;
 
-    this.modelList = [];
+    // this.modelList = [];
 
     // Compile a template to be shared between the individual tasks
     this.taskTemplate = _.template($('#task-template').html());
@@ -21,7 +21,7 @@ var TaskListView = Backbone.View.extend({
     // Create a TaskView for each task
     this.cardList = [];
 
-    options.taskData.forEach(function(task) {
+    this.model.forEach(function(task) {
       this.addTask(task);
       // var card = new TaskView({
       //   task: task,
@@ -34,6 +34,10 @@ var TaskListView = Backbone.View.extend({
       title: this.$('.new-task input[name="title"]'),
       description: this.$('.new-task input[name="description"]')
     };
+
+    this.listenTo(this.model, "update", this.render);
+    this.listenTo(this.model, "add", this.addTask);
+
   }, // end of initialize function
 
   render: function() {
@@ -66,7 +70,10 @@ var TaskListView = Backbone.View.extend({
     event.preventDefault();
 
     // Get the input data from the form and turn it into a task
-    var task = this.getInput();
+    var task = new Task(this.getInput());
+
+    // this.addTask(task);
+    this.model.add(task);
 
     // Add the new task to our list of tasks
 
@@ -80,7 +87,7 @@ var TaskListView = Backbone.View.extend({
     // this.cardList.push(card);
 
     // Re-render the whole list, now including the new card
-    this.render();
+    // this.render();
 
     // Clear the input form so the user can add another task
     this.clearInput();
@@ -99,9 +106,9 @@ var TaskListView = Backbone.View.extend({
     return task;
   },
 
-  addTask: function(rawTask) {
-    var task = new Task(rawTask);
-    this.modelList.push(task);
+  addTask: function(task) {
+    // var task = new Task(task);
+    // this.modelList.push(task);
 
     var card = new TaskView({
       model: task,

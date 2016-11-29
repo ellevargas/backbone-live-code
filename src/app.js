@@ -17,9 +17,11 @@ var taskData = [
 ];
 
 $(document).ready(function() {
+  var taskList = new TaskList(taskData);
+
   var application = new TaskListView({
     el: $('#application'),
-    taskData: taskData
+    model: taskList
   });
   application.render();
 });
