@@ -13,6 +13,11 @@ var Task = Backbone.Model.extend({
 
     // this.set("description", "JS was written in 10 days");
     // ^ handy for update operation on a contact in rolodex project
+  },
+
+  toggleComplete: function() {
+    var completed = this.get("complete");
+    this.set("complete", !completed);
   }
 
 });
