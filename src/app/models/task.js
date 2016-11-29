@@ -7,7 +7,12 @@ var Task = Backbone.Model.extend({
     complete: false // not necessary because undefined == falsey in js, this optional
   },
   initialize: function(options) {
-    console.log("Task created with a title of: " + this.title;)
+    console.log("BOOM NEW TASK TITLE: " + this.get("title"));
+
+    // .toJSON will convert attributes to a new JSON object whereas get just retreives one attribute
+
+    // this.set("description", "JS was written in 10 days");
+    // ^ handy for update operation on a contact in rolodex project
   }
 
 });

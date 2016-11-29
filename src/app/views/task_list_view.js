@@ -69,7 +69,6 @@ var TaskListView = Backbone.View.extend({
     var task = this.getInput();
 
     // Add the new task to our list of tasks
-    
 
     // this.taskData.push(task);
     //
@@ -107,8 +106,8 @@ var TaskListView = Backbone.View.extend({
     var card = new TaskView({
       model: task,
       template: this.taskTemplate
-    })
-
+    });
+    this.cardList.push(card);
   }
 
 });
