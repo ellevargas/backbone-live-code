@@ -1,6 +1,6 @@
 import Backbone from 'backbone';
 
-var Task = Backbone.Models.extend({
+var Task = Backbone.Model.extend({
   defaults: {
     title: "Placeholder title",
     description: "Placeholder desc",
