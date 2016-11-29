@@ -21,12 +21,13 @@ var TaskListView = Backbone.View.extend({
     // Create a TaskView for each task
     this.cardList = [];
 
-    this.taskData.forEach(function(task) {
-      var card = new TaskView({
-        task: task,
-        template: this.taskTemplate
-      });
-      this.cardList.push(card);
+    options.taskData.forEach(function(task) {
+      this.addTask(task);
+      // var card = new TaskView({
+      //   task: task,
+      //   template: this.taskTemplate
+      // });
+      // this.cardList.push(card);
     }, this); // bind `this` so it's available inside forEach
 
       this.input = {
@@ -68,14 +69,16 @@ var TaskListView = Backbone.View.extend({
     var task = this.getInput();
 
     // Add the new task to our list of tasks
-    this.taskData.push(task);
+    
 
-    // Create a card for the new task, and add it to our card list
-    var card = new TaskView({
-      task: task,
-      template: this.taskTemplate
-    });
-    this.cardList.push(card);
+    // this.taskData.push(task);
+    //
+    // // Create a card for the new task, and add it to our card list
+    // var card = new TaskView({
+    //   task: task,
+    //   template: this.taskTemplate
+    // });
+    // this.cardList.push(card);
 
     // Re-render the whole list, now including the new card
     this.render();
