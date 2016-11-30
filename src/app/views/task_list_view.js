@@ -4,6 +4,7 @@ import _ from 'underscore';
 
 import TaskView from 'app/views/task_view';
 import Task from 'app/models/task';
+import TaskList from 'app/collections/task_list';
 
 var TaskListView = Backbone.View.extend({
   initialize: function(options) {
@@ -23,11 +24,6 @@ var TaskListView = Backbone.View.extend({
 
     this.model.forEach(function(task) {
       this.addTask(task);
-      // var card = new TaskView({
-      //   task: task,
-      //   template: this.taskTemplate
-      // });
-      // this.cardList.push(card);
     }, this); // bind `this` so it's available inside forEach
 
       this.input = {
@@ -37,6 +33,7 @@ var TaskListView = Backbone.View.extend({
 
     this.listenTo(this.model, "update", this.render);
     this.listenTo(this.model, "add", this.addTask);
+    this.listenTo(this.model, "remove", this.removeTask);
 
   }, // end of initialize function
 
@@ -75,20 +72,6 @@ var TaskListView = Backbone.View.extend({
     // this.addTask(task);
     this.model.add(task);
 
-    // Add the new task to our list of tasks
-
-    // this.taskData.push(task);
-    //
-    // // Create a card for the new task, and add it to our card list
-    // var card = new TaskView({
-    //   task: task,
-    //   template: this.taskTemplate
-    // });
-    // this.cardList.push(card);
-
-    // Re-render the whole list, now including the new card
-    // this.render();
-
     // Clear the input form so the user can add another task
     this.clearInput();
   },
@@ -115,6 +98,19 @@ var TaskListView = Backbone.View.extend({
       template: this.taskTemplate
     });
     this.cardList.push(card);
+  },
+
+  removeTask: function(model, collection, options) {
+    var filteredList = [];
+    console.log("call function???")
+    for (var i = 0; i < this.cardList.length; i++) {
+      if(this.cardList[i].model == model) {
+        console.log("FOUND IT");
+      } else {
+        filteredList.push(this.cardList[i]);
+      }
+    }
+    this.cardList = filteredList;
   }
 
 });

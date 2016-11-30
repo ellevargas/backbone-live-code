@@ -6,13 +6,18 @@ var TaskView = Backbone.View.extend({
   }, // change is an event all models have
 
   events: {
-    'click .complete-button': 'completeHandler'
+    'click .complete-button': 'completeHandler',
+    'click .delete-button': 'deleteTask'
   },
 
   completeHandler: function() {
     console.log("HANDLERRRR");
     this.model.toggleComplete();
     // this.render(); better to have the model let us know when something has changed
+  },
+
+  deleteTask: function() {
+    this.model.destroy();
   },
 
   render: function() {

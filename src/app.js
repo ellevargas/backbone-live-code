@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import Backbone from 'backbone';
 import _ from 'underscore';
+
 import TaskListView from 'app/views/task_list_view';
+import TaskList from 'app/collections/task_list';
 
 var taskData = [
   {

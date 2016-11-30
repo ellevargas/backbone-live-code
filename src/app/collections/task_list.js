@@ -1,6 +1,6 @@
 import Task from 'app/models/task';
 
-var TaskList = Backbone.collection.extend({
+var TaskList = Backbone.Collection.extend({
   model: Task
 })
 

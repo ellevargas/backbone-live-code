@@ -7,7 +7,7 @@ var Task = Backbone.Model.extend({
     complete: false // not necessary because undefined == falsey in js, this optional
   },
   initialize: function(options) {
-    console.log("BOOM NEW TASK TITLE: " + this.get("title"));
+    // console.log("BOOM NEW TASK TITLE: " + this.get("title"));
 
     // .toJSON will convert attributes to a new JSON object whereas get just retreives one attribute
 
